@@ -9,4 +9,8 @@ public class Response {
     private String errorMsg;
     private long errorCode;
     private Object token;
+
+    public Response() {
+
+    }
 }

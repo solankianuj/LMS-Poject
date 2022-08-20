@@ -26,7 +26,7 @@ public class AdminController {
     }
 
     @PutMapping("/updateAdmin")
-    public AdminModel updateAdmin(@RequestParam long id,@RequestBody AdminDTO adminDTO){
+    public AdminModel updateAdmin( @Valid @RequestParam long id,@RequestBody AdminDTO adminDTO){
         return adminServices.updateAdmin(id, adminDTO);
     }
 

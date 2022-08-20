@@ -1,6 +1,7 @@
 package com.bridgelabz.lmsproject.service;
 
 import com.bridgelabz.lmsproject.dto.CandidateDTO;
+import com.bridgelabz.lmsproject.exception.CandidateNotFound;
 import com.bridgelabz.lmsproject.model.CandidateModel;
 import com.bridgelabz.lmsproject.repository.ICandidateRepository;
 import org.springframework.beans.factory.ObjectProvider;
@@ -30,7 +31,7 @@ public class CandidateServices implements ICandidateServices{
         if (candidateModel.isPresent()){
             return candidateModel.get();
         }
-        return null;
+      throw new CandidateNotFound(200,"Candidate Not Found !");
     }
 
     @Override
@@ -53,7 +54,7 @@ public class CandidateServices implements ICandidateServices{
             candidateRepository.save(candidateModel.get());
             return candidateModel.get();
         }
-        return null;
+        throw new CandidateNotFound(200,"Candidate Not Found !");
     }
 
     @Override

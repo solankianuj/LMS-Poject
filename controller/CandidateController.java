@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.GeneratedValue;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class CandidateController {
     ICandidateServices candidateServices;
 
     @PostMapping("/addCandidate")
-    public CandidateModel addCandidate(@RequestBody  CandidateDTO candidateDTO){
+    public CandidateModel addCandidate( @Valid @RequestBody  CandidateDTO candidateDTO){
        return candidateServices.addCandidate(candidateDTO);
     }
 

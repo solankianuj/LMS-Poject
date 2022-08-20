@@ -1,6 +1,7 @@
 package com.bridgelabz.lmsproject.service;
 
 import com.bridgelabz.lmsproject.dto.AdminDTO;
+import com.bridgelabz.lmsproject.exception.AdminNotFound;
 import com.bridgelabz.lmsproject.model.AdminModel;
 import com.bridgelabz.lmsproject.repository.IAdminRepository;
 import com.bridgelabz.lmsproject.util.Response;
@@ -32,7 +33,7 @@ public class AdminServices implements IAdminServices{
         if (adminModel.isPresent()){
             return adminModel.get();
         }
-        return null;
+        throw new AdminNotFound(200,"Admin Not Found !");
     }
 
     @Override
@@ -65,8 +66,9 @@ public class AdminServices implements IAdminServices{
                 String token=tokenutil.createToken(adminModel.get().getId());
                 return "http://localhost:8080/admin/changePassword/"+token;
             }
+            throw new AdminNotFound(200,"Invalid Email ID !");
         }
-        return null;
+        throw new AdminNotFound(200,"Admin Not Found !");
     }
 
     @Override
@@ -97,7 +99,8 @@ public class AdminServices implements IAdminServices{
                 String tokenobj= tokenutil.createToken(adminModel.get().getId());
                 return new Response("Login Success Full",200,tokenobj);
             }
+            throw new AdminNotFound(200,"Invalid Credential !");
         }
-        return null;
+        throw new AdminNotFound(200,"Admin Not Found !");
     }
 }
