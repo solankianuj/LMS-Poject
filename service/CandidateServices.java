@@ -4,7 +4,6 @@ import com.bridgelabz.lmsproject.dto.CandidateDTO;
 import com.bridgelabz.lmsproject.exception.CandidateNotFound;
 import com.bridgelabz.lmsproject.model.CandidateModel;
 import com.bridgelabz.lmsproject.repository.ICandidateRepository;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,9 +71,9 @@ public class CandidateServices implements ICandidateServices{
     }
 
     @Override
-    public CandidateModel changeCandidateStatus(long id, CandidateDTO candidateDTO) {
+    public CandidateModel changeCandidateStatus(long id, String candidatestatus) {
         CandidateModel candidateModel=this.getCandidate(id);
-        candidateModel.setCandidateStatus(candidateDTO.getCandidateStatus());
+        candidateModel.setCandidateStatus(candidatestatus);
         candidateRepository.save(candidateModel);
         return candidateModel;
     }

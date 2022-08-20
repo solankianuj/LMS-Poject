@@ -5,8 +5,6 @@ import com.bridgelabz.lmsproject.model.CandidateModel;
 import com.bridgelabz.lmsproject.service.ICandidateServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.GeneratedValue;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -34,8 +32,8 @@ public class CandidateController {
     }
 
     @PutMapping("/changeCandidateStatus")
-    public CandidateModel changeCandidateStatus(@RequestParam long id,@RequestBody CandidateDTO candidateDTO){
-      return   candidateServices.changeCandidateStatus(id, candidateDTO);
+    public CandidateModel changeCandidateStatus(@RequestParam long id,@RequestParam String candidatestatus){
+      return   candidateServices.changeCandidateStatus(id, candidatestatus);
     }
 
     @GetMapping("/getCandidateCountByStatus")
@@ -45,7 +43,7 @@ public class CandidateController {
 
 
     @PutMapping("/updateCandidate")
-    public CandidateModel updateCandidate(@RequestParam long id, @RequestBody CandidateDTO candidateDTO){
+    public CandidateModel updateCandidate(@RequestParam long id,@Valid @RequestBody CandidateDTO candidateDTO){
         return candidateServices.updateCandidate(id, candidateDTO);
 
     }

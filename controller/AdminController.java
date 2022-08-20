@@ -20,34 +20,34 @@ public class AdminController {
         return adminServices.addAdmin(adminDTO);
     }
 
-    @GetMapping("/getAdmin/{id}")
-    public AdminModel getAdmin(@PathVariable long id){
-      return   adminServices.getAdmin(id);
+    @GetMapping("/getAdmin")
+    public AdminModel getAdmin(@RequestHeader String token){
+      return   adminServices.getAdmin(token);
     }
 
     @PutMapping("/updateAdmin")
-    public AdminModel updateAdmin( @Valid @RequestParam long id,@RequestBody AdminDTO adminDTO){
-        return adminServices.updateAdmin(id, adminDTO);
+    public AdminModel updateAdmin( @RequestHeader String token,@Valid @RequestBody AdminDTO adminDTO){
+        return adminServices.updateAdmin(token, adminDTO);
     }
 
-    @DeleteMapping("/deleteAdmin/{id}")
-    public AdminModel deleteAdmin(@PathVariable long id){
-        return adminServices.deleteAdmin(id);
+    @DeleteMapping("/deleteAdmin")
+    public AdminModel deleteAdmin(@RequestHeader String token){
+        return adminServices.deleteAdmin(token);
     }
 
     @GetMapping("/resetPassword")
-    public String resetPassword(@RequestParam String emailId){
+    public String resetPassword( @RequestParam String emailId){
         return adminServices.resetPassword(emailId);
     }
 
-    @PutMapping("/changePassword/{token}")
-    public AdminModel changePassword(@PathVariable String token,@RequestBody AdminDTO adminDTO){
-        return adminServices.changePassword(token,adminDTO);
+    @PutMapping("/changePassword")
+    public AdminModel changePassword( @RequestHeader String token,@RequestParam String newPwd){
+        return adminServices.changePassword(token,newPwd);
     }
 
-    @PutMapping("/addProfile/{token}")
-    public AdminModel addProfile(@PathVariable String token,@RequestBody AdminDTO adminDTO){
-        return adminServices.addProfile(token, adminDTO);
+    @PutMapping("/addProfile")
+    public AdminModel addProfile(@RequestHeader String token,@RequestParam String path){
+        return adminServices.addProfile(token, path);
     }
 
     @GetMapping("/login")

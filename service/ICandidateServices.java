@@ -11,6 +11,6 @@ public interface ICandidateServices {
     CandidateModel updateCandidate(long id,CandidateDTO candidateDTO);
     CandidateModel deleteCandidate(long id);
     List<CandidateModel> getCandidateByStatus(String candidatestatus);
-    CandidateModel changeCandidateStatus(long id, CandidateDTO candidateDTO);
+    CandidateModel changeCandidateStatus(long id, String candidatestatus);
     String countCandidateByStatus(String candidateStatus);
 }

@@ -4,6 +4,7 @@ import com.bridgelabz.lmsproject.dto.AdminDTO;
 import com.bridgelabz.lmsproject.exception.AdminNotFound;
 import com.bridgelabz.lmsproject.model.AdminModel;
 import com.bridgelabz.lmsproject.repository.IAdminRepository;
+import com.bridgelabz.lmsproject.service.mailService.MailServices;
 import com.bridgelabz.lmsproject.util.Response;
 import com.bridgelabz.lmsproject.util.Token;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class AdminServices implements IAdminServices{
     IAdminRepository iAdminRepository;
     @Autowired
     Token tokenutil;
+    @Autowired
+    MailServices mailServices;
 
     @Override
     public AdminModel addAdmin(AdminDTO adminDTO) {
@@ -28,7 +31,8 @@ public class AdminServices implements IAdminServices{
     }
 
     @Override
-    public AdminModel getAdmin(long id) {
+    public AdminModel getAdmin(String token) {
+        Long id= tokenutil.decodeToken(token);
         Optional<AdminModel> adminModel=iAdminRepository.findById(id);
         if (adminModel.isPresent()){
             return adminModel.get();
@@ -37,8 +41,8 @@ public class AdminServices implements IAdminServices{
     }
 
     @Override
-    public AdminModel updateAdmin(long id, AdminDTO adminDTO) {
-        AdminModel adminModel=this.getAdmin(id);
+    public AdminModel updateAdmin(String token, AdminDTO adminDTO) {
+        AdminModel adminModel=this.getAdmin(token);
         adminModel.setFirstName(adminDTO.getFirstName());
         adminModel.setLastName(adminDTO.getLastName());
         adminModel.setEmailId(adminDTO.getEmailId());
@@ -52,7 +56,8 @@ public class AdminServices implements IAdminServices{
     }
 
     @Override
-    public AdminModel deleteAdmin(long id) {
+    public AdminModel deleteAdmin(String token) {
+        Long id= tokenutil.decodeToken(token);
         Optional<AdminModel> adminModel=iAdminRepository.findById(id);
         iAdminRepository.delete(adminModel.get());
         return adminModel.get();
@@ -64,7 +69,9 @@ public class AdminServices implements IAdminServices{
         if (adminModel.isPresent()){
             if (adminModel.get().getEmailId().equals(emailId)){
                 String token=tokenutil.createToken(adminModel.get().getId());
-                return "http://localhost:8080/admin/changePassword/"+token;
+                String URL="click here "+"http://localhost:8080/admin/changePassword/"+token;
+                String subject="Reset Password ..";
+                mailServices.send(emailId,subject,URL);
             }
             throw new AdminNotFound(200,"Invalid Email ID !");
         }
@@ -72,19 +79,17 @@ public class AdminServices implements IAdminServices{
     }
 
     @Override
-    public AdminModel changePassword(String token, AdminDTO adminDTO) {
-        Long id= tokenutil.decodeToken(token);
-        AdminModel adminModel=this.getAdmin(id);
-        adminModel.setPassword(adminDTO.getPassword());
+    public AdminModel changePassword(String token, String newPwd) {
+        AdminModel adminModel=this.getAdmin(token);
+        adminModel.setPassword(newPwd);
         iAdminRepository.save(adminModel);
         return adminModel;
     }
 
     @Override
-    public AdminModel addProfile(String token, AdminDTO adminDTO) {
-        Long id= tokenutil.decodeToken(token);
-        AdminModel adminModel=this.getAdmin(id);
-        adminModel.setProfilePath(adminDTO.getProfilePath());
+    public AdminModel addProfile(String token, String path) {
+        AdminModel adminModel=this.getAdmin(token);
+        adminModel.setProfilePath(path);
         iAdminRepository.save(adminModel);
         return adminModel;
     }
