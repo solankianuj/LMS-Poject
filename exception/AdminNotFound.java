@@ -8,7 +8,7 @@ public class AdminNotFound extends RuntimeException{
     private String statusMessage;
 
     public AdminNotFound(long errorCode, String statusMessage) {
-
+        super(statusMessage);
         this.errorCode = errorCode;
         this.statusMessage = statusMessage;
     }

@@ -21,19 +21,19 @@ public class CandidateController {
     }
 
     @GetMapping("/getCandidate")
-    public CandidateModel getCandidate(@RequestParam long id){
-        return candidateServices.getCandidate(id);
+    public CandidateModel getCandidate(@RequestParam String token){
+        return candidateServices.getCandidate(token);
     }
 
     @GetMapping("/getCandidateByStatus")
-    public List<CandidateModel> getCandidate(@RequestParam String candidateStatus){
+    public List<CandidateModel> getCandidateByStatus(@RequestParam String candidateStatus){
 
         return candidateServices.getCandidateByStatus(candidateStatus);
     }
 
     @PutMapping("/changeCandidateStatus")
-    public CandidateModel changeCandidateStatus(@RequestParam long id,@RequestParam String candidatestatus){
-      return   candidateServices.changeCandidateStatus(id, candidatestatus);
+    public CandidateModel changeCandidateStatus(@RequestParam String token,@RequestParam String candidatestatus){
+      return   candidateServices.changeCandidateStatus(token, candidatestatus);
     }
 
     @GetMapping("/getCandidateCountByStatus")

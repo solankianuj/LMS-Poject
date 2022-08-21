@@ -30,6 +30,14 @@ public class LmsProjectExceptionHandller {
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(MentorNotFound.class)
+    public ResponseEntity<Response> handleMentorException(MentorNotFound mentor){
+        Response response=new Response();
+        response.setErrorCode(400);
+        response.setErrorMsg(mentor.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Response> handleException(MethodArgumentNotValidException ad) {
         List<ObjectError> objectErrors=ad.getBindingResult().getAllErrors();

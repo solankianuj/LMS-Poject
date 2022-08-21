@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface ICandidateServices {
     CandidateModel addCandidate(CandidateDTO candidateDTO);
-    CandidateModel getCandidate(long id);
+    CandidateModel getCandidate(String token);
     CandidateModel updateCandidate(long id,CandidateDTO candidateDTO);
     CandidateModel deleteCandidate(long id);
     List<CandidateModel> getCandidateByStatus(String candidatestatus);
-    CandidateModel changeCandidateStatus(long id, String candidatestatus);
+    CandidateModel changeCandidateStatus(String token, String candidatestatus);
     String countCandidateByStatus(String candidateStatus);
 }

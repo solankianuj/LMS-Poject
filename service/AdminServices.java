@@ -69,13 +69,16 @@ public class AdminServices implements IAdminServices{
         if (adminModel.isPresent()){
             if (adminModel.get().getEmailId().equals(emailId)){
                 String token=tokenutil.createToken(adminModel.get().getId());
-                String URL="click here "+"http://localhost:8080/admin/changePassword/"+token;
+                String link=System.getenv("resetPwdLink");
+                String URL="click here "+link+token;
                 String subject="Reset Password ..";
                 mailServices.send(emailId,subject,URL);
             }
+        }
+        else {
             throw new AdminNotFound(200,"Invalid Email ID !");
         }
-        throw new AdminNotFound(200,"Admin Not Found !");
+        return null;
     }
 
     @Override
