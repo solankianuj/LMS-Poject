@@ -22,32 +22,32 @@ public class MentorController {
     }
 
     @GetMapping("/getMentor")
-    public MentorModel getMentor(@RequestParam long id){
-       return mentorServices.getMentor(id);
+    public MentorModel getMentor(@RequestParam String token,@RequestParam long id){
+       return mentorServices.getMentor(token,id);
     }
 
     @PutMapping("/updateMentor")
-    public MentorModel updateMentor( @RequestParam long id, @Valid @RequestBody MentorDTO mentorDTO){
-        return mentorServices.updateMentor(id, mentorDTO);
+    public MentorModel updateMentor(@RequestParam String token, @RequestParam long id, @Valid @RequestBody MentorDTO mentorDTO){
+        return mentorServices.updateMentor(token,id, mentorDTO);
     }
 
     @DeleteMapping("/deleteMentor")
-    public MentorModel deleteMentor(@RequestParam long id){
-        return mentorServices.deleteMentor(id);
+    public MentorModel deleteMentor(@RequestParam String token, @RequestParam long mentorId){
+        return mentorServices.deleteMentor(token,mentorId);
     }
 
     @GetMapping("/getMentorByRole")
-    public String mentorByRole(@RequestParam String mentorRole){
-        return mentorServices.getMentorByRole(mentorRole);
+    public String mentorByRole(@RequestParam String token, @RequestParam String mentorRole){
+        return mentorServices.getMentorByRole(token,mentorRole);
     }
 
     @GetMapping("/getMentorByMentorId")
-    public MentorModel byMentorId(@RequestParam String mentorId){
-        return mentorServices.getMentorByMentorId(mentorId);
+    public MentorModel byMentorId(@RequestParam String token,@RequestParam String mentorId){
+        return mentorServices.getMentorByMentorId(token,mentorId);
     }
 
     @GetMapping("/getMentorCount")
-    public String getTotalMentor(){
-        return mentorServices.mentorsCount();
+    public String getTotalMentor(@RequestParam String token){
+        return mentorServices.mentorsCount(token);
     }
 }

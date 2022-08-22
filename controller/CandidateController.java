@@ -21,35 +21,35 @@ public class CandidateController {
     }
 
     @GetMapping("/getCandidate")
-    public CandidateModel getCandidate(@RequestParam String token){
-        return candidateServices.getCandidate(token);
+    public CandidateModel getCandidate(@RequestParam String token,@RequestParam long candidateId){
+        return candidateServices.getCandidate(token,candidateId);
     }
 
     @GetMapping("/getCandidateByStatus")
-    public List<CandidateModel> getCandidateByStatus(@RequestParam String candidateStatus){
+    public List<CandidateModel> getCandidateByStatus(@RequestParam String token,@RequestParam String candidateStatus){
 
-        return candidateServices.getCandidateByStatus(candidateStatus);
+        return candidateServices.getCandidateByStatus(token,candidateStatus);
     }
 
     @PutMapping("/changeCandidateStatus")
-    public CandidateModel changeCandidateStatus(@RequestParam String token,@RequestParam String candidatestatus){
-      return   candidateServices.changeCandidateStatus(token, candidatestatus);
+    public CandidateModel changeCandidateStatus(@RequestParam String token,@RequestParam String candidatestatus,@RequestParam long candidateId){
+      return   candidateServices.changeCandidateStatus(token, candidatestatus,candidateId);
     }
 
-    @GetMapping("/getCandidateCountByStatus")
-    public  String candidateCount(@RequestParam String candidateStatus){
-        return candidateServices.countCandidateByStatus(candidateStatus);
+    @GetMapping("/getCandidateCount")
+    public  String countCandidateByStatus (@RequestParam String token, @RequestParam String candidateStatus){
+        return candidateServices.countCandidateByStatus(token,candidateStatus);
     }
 
 
     @PutMapping("/updateCandidate")
-    public CandidateModel updateCandidate(@RequestParam long id,@Valid @RequestBody CandidateDTO candidateDTO){
-        return candidateServices.updateCandidate(id, candidateDTO);
+    public CandidateModel updateCandidate(@RequestParam String token ,@RequestParam long id,@Valid @RequestBody CandidateDTO candidateDTO){
+        return candidateServices.updateCandidate(token,id, candidateDTO);
 
     }
 
     @DeleteMapping("/deleteCandidate")
-    public CandidateModel deleteCandidate(@RequestParam long id){
-        return candidateServices.deleteCandidate(id);
+    public CandidateModel deleteCandidate(@RequestParam String token,@RequestParam long candidateId){
+        return candidateServices.deleteCandidate(token,candidateId);
     }
 }

@@ -30,7 +30,6 @@ public class CandidateModel {
     private String candidateStatus;
     @CreationTimestamp
     private LocalDateTime creationTimeStamp;
-    @UpdateTimestamp
     private LocalDateTime updateTimeStamp;
 
     public CandidateModel(CandidateDTO candidateDTO) {

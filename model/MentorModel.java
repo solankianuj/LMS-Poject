@@ -2,6 +2,7 @@ package com.bridgelabz.lmsproject.model;
 
 import com.bridgelabz.lmsproject.dto.MentorDTO;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,7 +13,8 @@ import java.time.LocalDateTime;
 @Data
 public class MentorModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name = "mentorData",strategy = "increment")
+    @GeneratedValue(generator = "mentorData")
     private Long id;
     private String employeeId;
     private String firstName;
