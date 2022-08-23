@@ -11,9 +11,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * purpose:Handling different-different exception
+ */
 @ControllerAdvice
 public class LmsProjectExceptionHandller {
-
+    /**
+     * purpose:handling exception and providing custom message
+     * @param admin
+     * @return
+     */
     @ExceptionHandler(AdminNotFound.class)
     public ResponseEntity<Response> handleAdminException(AdminNotFound admin){
         Response response=new Response();
@@ -22,6 +29,11 @@ public class LmsProjectExceptionHandller {
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * purpose:handling exception and providing custom message
+     * @param candidate
+     * @return
+     */
     @ExceptionHandler(CandidateNotFound.class)
     public ResponseEntity<Response> handleCandidateException(CandidateNotFound candidate){
         Response response=new Response();
@@ -30,6 +42,11 @@ public class LmsProjectExceptionHandller {
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * purpose:handling exception and providing custom message
+     * @param mentor
+     * @return
+     */
     @ExceptionHandler(MentorNotFound.class)
     public ResponseEntity<Response> handleMentorException(MentorNotFound mentor){
         Response response=new Response();
@@ -38,6 +55,11 @@ public class LmsProjectExceptionHandller {
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * purpose:handling exception and providing custom message
+     * @param ad
+     * @return
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Response> handleException(MethodArgumentNotValidException ad) {
         List<ObjectError> objectErrors=ad.getBindingResult().getAllErrors();

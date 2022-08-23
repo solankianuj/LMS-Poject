@@ -2,11 +2,14 @@ package com.bridgelabz.lmsproject.model;
 
 import com.bridgelabz.lmsproject.dto.CandidateDTO;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
+
+/**
+ * purpose:creating candidate model
+ * @author Anuj Solanki
+ */
 @Entity
 @Table(name = "candidateData")
 @Data
@@ -28,7 +31,9 @@ public class CandidateModel {
     private String passOutYear;
     private String creatorUser;
     private String candidateStatus;
-    @CreationTimestamp
+    @OneToMany
+    @CollectionTable(name = "techStackDataMapping",joinColumns = @JoinColumn(name = "techStackId"))
+    private List<TechStackModel> techStackModelList;
     private LocalDateTime creationTimeStamp;
     private LocalDateTime updateTimeStamp;
 

@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * purpose:creating admin repository
+ */
 @Repository
 public interface IAdminRepository extends JpaRepository<AdminModel,Long> {
     Optional<AdminModel> findByEmailId(String emailId);

@@ -14,6 +14,10 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * purpose:creating different bankDetails services
+ * @author Anuj Solanki
+ */
 @Service
 public class BankDetailsServices implements IBankDetailsServices{
 
@@ -23,6 +27,13 @@ public class BankDetailsServices implements IBankDetailsServices{
     IAdminRepository adminRepository;
     @Autowired
     Token tokenUtil;
+
+    /**
+     *  Purpose:adding bank details of candidate
+     * @param token
+     * @param bankDetailsDTO
+     * @return
+     */
     @Override
     public BankDetailsModel addBankDetails(String token,BankDetailsDTO bankDetailsDTO) {
         Long id= tokenUtil.decodeToken(token);
@@ -36,7 +47,12 @@ public class BankDetailsServices implements IBankDetailsServices{
         }
         throw new AdminNotFound(200,"Admin Not Found !");
     }
-
+    /**
+     *  Purpose:getting bank details
+     * @param token
+     * @param accountId
+     * @return
+     */
     @Override
     public BankDetailsModel getBankDetails(String token, long accountId) {
         Long id= tokenUtil.decodeToken(token);
@@ -47,7 +63,13 @@ public class BankDetailsServices implements IBankDetailsServices{
         }
        throw new AdminNotFound(200,"Admin Not Found !");
     }
-
+    /**
+     *  Purpose:updating bank details
+     * @param token
+     * @param accountId
+     * @param bankDetailsDTO
+     * @return
+     */
     @Override
     public BankDetailsModel updateBankDetails(String token,long accountId, BankDetailsDTO bankDetailsDTO) {
         Long id= tokenUtil.decodeToken(token);
@@ -66,7 +88,12 @@ public class BankDetailsServices implements IBankDetailsServices{
         }
        throw new AdminNotFound(200,"Admin Not Found !");
     }
-
+    /**
+     *  Purpose:deleting bank details
+     * @param token
+     * @param accountId
+     * @return
+     */
     @Override
     public BankDetailsModel deleteBankDetails(String token, long accountId) {
         Long id= tokenUtil.decodeToken(token);

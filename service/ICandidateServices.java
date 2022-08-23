@@ -6,9 +6,9 @@ import com.bridgelabz.lmsproject.model.CandidateModel;
 import java.util.List;
 
 public interface ICandidateServices {
-    CandidateModel addCandidate(CandidateDTO candidateDTO);
+    CandidateModel addCandidate(CandidateDTO candidateDTO,List<Long> techStackId);
     CandidateModel getCandidate(String token,long candidateId);
-    CandidateModel updateCandidate(String token,long id,CandidateDTO candidateDTO);
+    CandidateModel updateCandidate(String token,long id,CandidateDTO candidateDTO,List<Long> techStackId);
     CandidateModel deleteCandidate(String token,long candidateId);
     List<CandidateModel> getCandidateByStatus(String token, String candidateStatus);
     CandidateModel changeCandidateStatus(String token, String candidateStatus,long candidateId);

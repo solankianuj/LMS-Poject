@@ -8,6 +8,11 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
+/**
+ * purpose:creating candidate technology model
+ * @author Anuj Solanki
+ */
 @Entity
 @Table(name = "techStackData")
 @Data

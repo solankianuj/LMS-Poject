@@ -8,6 +8,10 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * purpose:creating mentor model
+ * @author Anuj Solanki
+ */
 @Entity
 @Table(name = "mentorData")
 @Data

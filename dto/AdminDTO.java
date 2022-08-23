@@ -4,6 +4,10 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ *  Purpose:creating admin dto and adding validation on admin dto
+ * @author Anuj Solanki
+ */
 @Data
 public class AdminDTO {
     @Pattern(regexp = "^[A-Z]{1}[a-z]{2,}$", message = " First Name is invalid")

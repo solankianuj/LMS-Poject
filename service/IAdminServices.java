@@ -11,7 +11,7 @@ public interface IAdminServices {
 
     AdminModel deleteAdmin(String token);
 
-    String resetPassword(String emailId );
+    String resetPassword(String emailId,String newPwd );
     AdminModel changePassword(String token,String newPwd);
     AdminModel addProfile(String token,String path);
     Response login(String emailId, String password);

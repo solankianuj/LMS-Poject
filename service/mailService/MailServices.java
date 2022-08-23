@@ -11,6 +11,9 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * purpose:creating mail services for getting login message
+ */
 @Component
 @Slf4j
 public class MailServices {

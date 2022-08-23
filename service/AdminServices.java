@@ -9,10 +9,13 @@ import com.bridgelabz.lmsproject.util.Response;
 import com.bridgelabz.lmsproject.util.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+
+/**
+ * purpose:creating different admin services
+ */
 @Service
 public class AdminServices implements IAdminServices{
 
@@ -23,6 +26,11 @@ public class AdminServices implements IAdminServices{
     @Autowired
     MailServices mailServices;
 
+    /**
+     * purpose:Adding admin
+     * @param  adminDTO
+     * @return admin
+     */
     @Override
     public AdminModel addAdmin(AdminDTO adminDTO) {
         AdminModel adminModel=new AdminModel(adminDTO);
@@ -30,6 +38,11 @@ public class AdminServices implements IAdminServices{
         return adminModel;
     }
 
+    /**
+     * Purpose:get admin details
+     * @param token
+     * @return admin details
+     */
     @Override
     public AdminModel getAdmin(String token) {
         Long id= tokenutil.decodeToken(token);
@@ -39,6 +52,13 @@ public class AdminServices implements IAdminServices{
         }
         throw new AdminNotFound(200,"Admin Not Found !");
     }
+
+    /**
+     *  Purpose:updating admin details
+     * @param token
+     * @param adminDTO
+     * @return admin updated admin details
+     */
 
     @Override
     public AdminModel updateAdmin(String token, AdminDTO adminDTO) {
@@ -54,7 +74,11 @@ public class AdminServices implements IAdminServices{
         iAdminRepository.save(adminModel);
         return adminModel;
     }
-
+    /**
+     *  Purpose:deleting admin
+     * @param token
+     * @return deleted admin
+     */
     @Override
     public AdminModel deleteAdmin(String token) {
         Long id= tokenutil.decodeToken(token);
@@ -62,15 +86,20 @@ public class AdminServices implements IAdminServices{
         iAdminRepository.delete(adminModel.get());
         return adminModel.get();
     }
-
+    /**
+     *  Purpose:generate change password link
+     * @param emailId
+     * @param newPwd
+     * @return change password link
+     */
     @Override
-    public String  resetPassword(String emailId) {
+    public String  resetPassword(String emailId,String newPwd) {
         Optional<AdminModel> adminModel=iAdminRepository.findByEmailId(emailId);
         if (adminModel.isPresent()){
             if (adminModel.get().getEmailId().equals(emailId)){
                 String token=tokenutil.createToken(adminModel.get().getId());
                 String link=System.getenv("resetPwdLink");
-                String URL="click here "+link+token;
+                String URL="click here "+link+newPwd+"/"+token;
                 String subject="Reset Password ..";
                 mailServices.send(emailId,subject,URL);
             }
@@ -80,7 +109,12 @@ public class AdminServices implements IAdminServices{
         }
         return null;
     }
-
+    /**
+     *  Purpose:changing password
+     * @param token
+     * @param newPwd
+     * @return
+     */
     @Override
     public AdminModel changePassword(String token, String newPwd) {
         AdminModel adminModel=this.getAdmin(token);
@@ -88,7 +122,12 @@ public class AdminServices implements IAdminServices{
         iAdminRepository.save(adminModel);
         return adminModel;
     }
-
+    /**
+     *  Purpose:adding profile image to admin
+     * @param token
+     * @param path
+     * @return
+     */
     @Override
     public AdminModel addProfile(String token, String path) {
         AdminModel adminModel=this.getAdmin(token);
@@ -97,7 +136,12 @@ public class AdminServices implements IAdminServices{
         return adminModel;
     }
 
-
+    /**
+     *  Purpose:admin login,generating token
+     * @param emailId
+     * @param password
+     * @return
+     */
     @Override
     public Response login(String emailId, String password) {
         Optional<AdminModel> adminModel=iAdminRepository.findByEmailId(emailId);

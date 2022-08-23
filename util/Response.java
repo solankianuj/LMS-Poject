@@ -3,6 +3,10 @@ package com.bridgelabz.lmsproject.util;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * purpose: Creating a response class
+ * @author Anuj Solanki
+ */
 @Data
 @AllArgsConstructor
 public class Response {

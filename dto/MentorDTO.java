@@ -6,6 +6,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
+/**
+ * purpose:creating mentor dto and validation on mentor dto
+ * @author Anuj Solanki
+ */
 @Data
 public class MentorDTO {
     @NotNull(message = "employeeId is required")

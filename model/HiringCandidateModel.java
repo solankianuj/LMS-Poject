@@ -10,6 +10,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * purpose:creating hiredCandidate model
+ * @author Anuj Solanki
+ */
 @Entity
 @Table(name = "hiringCandidateData")
 @Data

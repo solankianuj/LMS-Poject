@@ -6,6 +6,10 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * purpose:creating candidate dto and adding validation on candidate dto
+ * @author Anuj Solanki
+ */
 @Data
 public class CandidateDTO {
 
@@ -19,22 +23,22 @@ public class CandidateDTO {
     private String mobileNo;
     @NotNull(message = "Hiring Date Can Not Be Noll ")
     private String hireDate;
-    @NotEmpty(message = "Required.")
+    @NotEmpty(message = "degree required")
     private String degree;
-    @NotNull(message = "aggregate percentage required.")
+    @NotNull(message = "aggregate percentage required")
     private Double aggPer;
-    @NotEmpty(message = "city required.")
+    @NotEmpty(message = "city required")
     private String city;
-    @NotEmpty(message = " required.")
+    @NotEmpty(message = "state required")
     private String state;
-    @NotEmpty(message = "Required.")
+    @NotEmpty(message = "job location required")
     private String preferredJobLocation;
-    @NotEmpty(message = "Required.")
+    @NotEmpty(message = " status required")
     private String status;
-    @NotEmpty(message = "Required.")
+    @NotEmpty(message = " passOutYear required")
     private String passOutYear;
-    @NotEmpty(message = "Required.")
+    @NotEmpty(message = "creatorUser required")
     private String creatorUser;
-    @NotEmpty(message = "Required.")
+    @NotEmpty(message = "required")
     private String candidateStatus;
 }

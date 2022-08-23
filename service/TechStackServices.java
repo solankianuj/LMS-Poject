@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ *  Purpose:creating different candidate technology services
+ * @author Anuj Solanki
+ */
 @Service
 public class TechStackServices implements ITechStackServices{
 
@@ -22,6 +26,13 @@ public class TechStackServices implements ITechStackServices{
     IAdminRepository adminRepository;
     @Autowired
     Token tokenUtil;
+
+    /**
+     *  Purpose:adding technology
+     * @param token
+     * @param techStackDTO
+     * @return
+     */
     @Override
     public TechStackModel addTechStack(String token,TechStackDTO techStackDTO) {
         Long id= tokenUtil.decodeToken(token);
@@ -36,6 +47,12 @@ public class TechStackServices implements ITechStackServices{
         throw new AdminNotFound(200,"Admin Not Found !");
     }
 
+    /**
+     *  Purpose:getting technology
+     * @param token
+     * @param techStackId
+     * @return
+     */
     @Override
     public TechStackModel getTechStack(String token, long techStackId) {
         Long id= tokenUtil.decodeToken(token);
@@ -51,6 +68,13 @@ public class TechStackServices implements ITechStackServices{
         throw new AdminNotFound(200,"Admin Not Found !");
     }
 
+    /**
+     *  Purpose:updating technology
+     * @param token
+     * @param techStackId
+     * @param techStackDTO
+     * @return
+     */
     @Override
     public TechStackModel updateTechStack(String token, long techStackId, TechStackDTO techStackDTO) {
         Long id= tokenUtil.decodeToken(token);
@@ -67,6 +91,12 @@ public class TechStackServices implements ITechStackServices{
         throw new AdminNotFound(200,"Admin Not Found !");
     }
 
+    /**
+     *  Purpose:deleting technology
+     * @param token
+     * @param techStackId
+     * @return
+     */
     @Override
     public TechStackModel deleteTechStack(String token, long techStackId) {
         Long id= tokenUtil.decodeToken(token);

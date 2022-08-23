@@ -15,6 +15,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ *  Purpose:creating Hired Candidate different services
+ * @author Anuj Solanki
+ */
 @Service
 public class HiringCandidateServices implements IHiringCandidateServices{
 
@@ -26,6 +30,13 @@ public class HiringCandidateServices implements IHiringCandidateServices{
     IBankDetailsRepository bankDetailsRepository;
     @Autowired
     Token tokenUtil;
+
+    /**
+     *  Purpose:adding hired candidate
+     * @param accountId
+     * @param hiringCandidateDTO
+     * @return
+     */
     @Override
     public HiringCandidateModel addHiredCandidate(long accountId,HiringCandidateDTO hiringCandidateDTO) {
         Optional<BankDetailsModel> bankDetailsModel=bankDetailsRepository.findById(accountId);
@@ -38,6 +49,12 @@ public class HiringCandidateServices implements IHiringCandidateServices{
         return hiringCandidateModel;
     }
 
+    /**
+     *  Purpose:getting hired candidate
+     * @param token
+     * @param candidateId
+     * @return
+     */
     @Override
     public HiringCandidateModel getHiredCandidate(String token, long candidateId) {
         Long id= tokenUtil.decodeToken(token);
@@ -51,7 +68,13 @@ public class HiringCandidateServices implements IHiringCandidateServices{
         }
         throw new AdminNotFound(200,"Admin Not Found !");
     }
-
+    /**
+     *  Purpose:updating hired candidate details
+     * @param token
+     * @param candidateId
+     * @param hiringCandidateDTO
+     * @return
+     */
     @Override
     public HiringCandidateModel updateHireCandidate(String token, long candidateId, HiringCandidateDTO hiringCandidateDTO) {
         Long id= tokenUtil.decodeToken(token);
@@ -78,6 +101,13 @@ public class HiringCandidateServices implements IHiringCandidateServices{
         throw new AdminNotFound(200,"Admin Not Found !");
     }
 
+    /**
+     *  Purpose:deleting hired candidate
+     * @param token
+     * @param candidateId
+     * @return
+     */
+
     @Override
     public HiringCandidateDTO deleteHireCandidate(String token, long candidateId) {
         Long id= tokenUtil.decodeToken(token);
@@ -88,6 +118,11 @@ public class HiringCandidateServices implements IHiringCandidateServices{
         }
           throw new AdminNotFound(200,"Admin Not Found !");
     }
+    /**
+     *  Purpose:listing total hired candidates
+     * @param token
+     * @return
+     */
 
     @Override
     public List<HiringCandidateModel> getCandidateList(String token) {

@@ -8,11 +8,21 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import com.auth0.jwt.interfaces.Verification;
 import org.springframework.stereotype.Component;
 
+/**
+ * purpose: Creating a token class
+ * @author Anuj Solanki
+ */
+
 @Component
 public class Token {
 
     public final String Token_Secret="LoginToken";
 
+    /**
+     * purpose:creating token for access
+     * @param id
+     * @return
+     */
     public String createToken(Long id){
         try {
             Algorithm algorithm=Algorithm.HMAC256(Token_Secret);
@@ -27,6 +37,11 @@ public class Token {
         return null;
     }
 
+    /**
+     * purpose:decoding token
+     * @param token
+     * @return
+     */
     public Long decodeToken(String token){
         Long userid;
         Verification verification=null;

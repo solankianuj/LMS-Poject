@@ -16,6 +16,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ *  Purpose:creating Mentors different services
+ * @author Anuj Solanki
+ */
+
 @Service
 public class MentorServices implements IMentorServices{
 
@@ -25,7 +30,11 @@ public class MentorServices implements IMentorServices{
     Token tokenutil;
     @Autowired
     IAdminRepository adminRepository;
-
+    /**
+     *  Purpose:adding mentors
+     * @param mentorDTO
+     * @return
+     */
     @Override
     public MentorModel addMentor(MentorDTO mentorDTO) {
         MentorModel mentorModel=new MentorModel(mentorDTO);
@@ -34,6 +43,12 @@ public class MentorServices implements IMentorServices{
         return mentorModel;
     }
 
+    /**
+     *  Purpose:getting mentor
+     * @param token
+     * @param mentorId
+     * @return
+     */
     @Override
     public MentorModel getMentor(String token, long mentorId) {
         Long id= tokenutil.decodeToken(token);
@@ -48,6 +63,13 @@ public class MentorServices implements IMentorServices{
         throw new AdminNotFound(200,"Admin Not Found !");
     }
 
+    /**
+     *  Purpose:updating mentors details
+     * @param token
+     * @param mentorId
+     * @param mentorDTO
+     * @return
+     */
     @Override
     public MentorModel updateMentor(String token, long mentorId, MentorDTO mentorDTO) {
         Long id= tokenutil.decodeToken(token);
@@ -76,6 +98,12 @@ public class MentorServices implements IMentorServices{
         throw new AdminNotFound(200,"Admin Not Found !");
     }
 
+    /**
+     *  Purpose:deleting mentor
+     * @param token
+     * @param mentorId
+     * @return
+     */
     @Override
     public MentorModel deleteMentor(String token, long mentorId) {
         Long id= tokenutil.decodeToken(token);
@@ -88,6 +116,12 @@ public class MentorServices implements IMentorServices{
         throw new AdminNotFound(200,"Admin Not Found !");
     }
 
+    /**
+     *  Purpose:getting mentor by role
+     * @param token
+     * @param mentorRole
+     * @return
+     */
     @Override
     public String getMentorByRole(String token, String mentorRole) {
         Long id= tokenutil.decodeToken(token);
@@ -101,6 +135,12 @@ public class MentorServices implements IMentorServices{
         throw new AdminNotFound(200,"Admin Not Found !");
     }
 
+    /**
+     *  Purpose:getting mentor by mentorId
+     * @param token
+     * @param mentorId
+     * @return
+     */
     @Override
     public MentorModel getMentorByMentorId(String token, String mentorId) {
         Long id= tokenutil.decodeToken(token);
@@ -115,6 +155,11 @@ public class MentorServices implements IMentorServices{
         throw new AdminNotFound(200,"Admin Not Found !");
     }
 
+    /**
+     *  Purpose:counting total mentors
+     * @param token
+     * @return
+     */
     @Override
     public String mentorsCount(String token) {
         Long id= tokenutil.decodeToken(token);

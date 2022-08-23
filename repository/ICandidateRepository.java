@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * purpose:creating candidate repository
+ */
 @Repository
 public interface ICandidateRepository extends JpaRepository<CandidateModel,Long> {
     Optional<CandidateModel> findByCandidateStatus(String status);

@@ -7,6 +7,10 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * purpose:creating bankDetails model
+ * @author Anuj Solanki
+ */
 @Entity
 @Table(name = "bankDetails")
 @Data

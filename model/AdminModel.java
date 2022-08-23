@@ -2,15 +2,21 @@ package com.bridgelabz.lmsproject.model;
 
 import com.bridgelabz.lmsproject.dto.AdminDTO;
 import lombok.Data;
-
+import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
+/**
+ * purpose:creating admin model
+ * @author Anuj Solanki
+ */
 @Entity
 @Table(name = "AdminData")
 @Data
 public class AdminModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name = "AdminData",strategy = "increment")
+    @GeneratedValue(generator = "AdminData")
     private long id;
     private String firstName;
     private String lastName;
